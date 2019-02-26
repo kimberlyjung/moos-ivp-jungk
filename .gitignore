@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# MOOS Specific
+*.alog
+*.blog
