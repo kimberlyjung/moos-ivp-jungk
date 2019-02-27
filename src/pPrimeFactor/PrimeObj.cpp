@@ -44,13 +44,13 @@ string PrimeObj::primePrint()
 void PrimeObj::factorPrimes()
 {
   if(debug) {cout<<"Incomplete factorization for "<<m_number<<",numsteps="<<m_num_steps<<",Iterationindex="<<m_iteration_index<<endl;}	
-  while(m_tempnum%2==0 && m_num_steps<10) { // handle the even numbers
+  while(m_tempnum%2==0 && m_num_steps<100000) { // handle the even numbers
       m_list_primes.push_back(2);
       m_tempnum=m_tempnum/2;
       m_num_steps++;
       if(debug) {cout<<"#"<<m_number<<":numsteps="<<m_num_steps<<",Iteration index"<<m_iteration_index<<endl;}	
     }
-  while((m_iteration_index<=sqrt(m_tempnum))&&(m_num_steps<10)) { //only odd numbers
+  while((m_iteration_index<=sqrt(m_tempnum))&&(m_num_steps<100000)) { //only odd numbers
       if(debug) {cout<<"Odd,#"<<m_number<<",num_steps="<<m_num_steps<<",tempnum="<<m_tempnum<<"m_iteration_index="<<m_iteration_index<<endl;}
       while(m_tempnum%m_iteration_index==0) {
 	  m_list_primes.push_back(m_iteration_index);
