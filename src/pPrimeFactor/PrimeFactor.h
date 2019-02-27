@@ -31,8 +31,8 @@ class PrimeFactor : public CMOOSApp
  private: // State variables
 
    list<PrimeObj> list_allnums;
-   int counter; //keeps track of how many pieces of mail have been received and increments
-   int order; //keeps track of order of processed pieces of mail
+   unsigned int counter; //keeps track of how many pieces of mail have been received and increments
+   unsigned int order; //keeps track of order of processed pieces of mail
 };
 
 #endif 

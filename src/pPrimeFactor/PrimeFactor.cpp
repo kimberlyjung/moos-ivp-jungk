@@ -36,27 +36,25 @@ bool PrimeFactor::OnNewMail(MOOSMSG_LIST &NewMail)
   if(debug) { cout << "I'm in ON NEW MAIL" << endl;}
   MOOSMSG_LIST::iterator p;
   
-  for(p=NewMail.begin(); p!=NewMail.end(); p++)
-    {
+  for(p=NewMail.begin(); p!=NewMail.end(); p++) {
     CMOOSMsg &msg = *p;
     double dval  = msg.GetDouble();
     string key   = msg.GetKey();
     string sval = msg.GetString();
     string toprint = "";
 
-    if(key=="NUM_VALUE")
-      { 
+    if(key=="NUM_VALUE") { 
       PrimeObj x; //create a new PrimeObj
-      //if(debug) { cout << "%%%% received NUM_VALUE key %%%%" << endl;}  
       x.m_number=strtoul(sval.c_str(), NULL, 0); // convert sval string into a uint64_t type
       x.m_tempnum=x.m_number;
       x.m_is_complete=false;
-      x.m_queue_num=counter; counter++; // set the received queue_num of this PrimeObj to current counter and then iterate counter
+      x.m_queue_num=counter; counter++; // set to current counter and then iterate counter
       x.m_timestamp_begin=MOOSTime(); // set beginning time stamp for this PrimeObj
       x.m_iteration_index=3; // start at the value of 3 for iteration index
       list_allnums.push_back(x); // add newly created PrimeObj x to the working list 
       }
-    } //end of the NewMail for-loop
+    } 
+  if(debug) {cout << "Size of NewMail is: " << list_allnums.size() << endl;}
    return(true);
 }
 
@@ -82,26 +80,19 @@ bool PrimeFactor::Iterate()
 {
   //if(debug) { cout << "%%%% I'm in Iterate() %%%%" << endl;}
   list<PrimeObj>::iterator p;
-  
-  while(list_allnums.size()!=0)  //Iterate through list 
-  {
+
+  for(unsigned int k=0; k<10 && list_allnums.size()!=0; k++) {
     p=list_allnums.begin();
     PrimeObj &x = *p;
-    if(x.m_is_complete) //if factorization is complete for this element, then print it out and pop it out of the list_allnums queue
-      {
-        if(debug) { cout << "%%%% I'm in a completed element where factorization is complete for " << x.m_is_complete  << " %%%%" << endl;}	
+    if(x.m_is_complete) { //if factorization is complete, then Notify/Print
+        if(debug) { cout << "%%%% I'm in a completed element where factorization is complete for " << x.m_number << " %%%%" << endl;}	
         x.m_timestamp_end=MOOSTime(); //set final timestamp end
 	x.m_calculated_order=order; order++;//set final calculated order, iterate order
-     	Notify("PRIME_RESULT", x.Print()); // print out the element and returns a string that goes into Notify to publish the MOOS var PRIME_RESULT
-        list_allnums.pop_front(); //pop out that completed element which is next in queue
+     	Notify("PRIME_RESULT", x.primePrint()); 
+        p=list_allnums.erase(p); // erase element from list
       }
-    else //if factorization not yet complete for this element, then continue factoring it and then add it back to the end of the queue
-      {
-	if(debug) { cout << "%%%% In a factorization not complete for " << x.m_number << " %%%%" << endl;}	
-	while((x.m_num_steps<10) && (x.m_is_complete==false)) // factor for an iterating iteration_index
-	  {
-	    x.Factor();
-	  }
+    else { //if factorization incomplete, continue factoring 
+	x.factorPrimes();
 	x.m_num_steps=0; //reset 10 num_steps to 0 num_steps
 	if(debug) { cout << "Finished batch of factorization for #" << x.m_number << " and push back and pop front for list_allnums" << endl;}
 	list_allnums.push_back(x);//add new x with updated values, back to the end of the queue

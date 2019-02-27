@@ -43,8 +43,8 @@ class PrimeObj
   bool debug = false;
   
  public:
-  string Print();
-  void Factor();
+  string primePrint();
+  void factorPrimes();
 };
 
 #endif 

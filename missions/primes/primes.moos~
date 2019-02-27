@@ -1,8 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% LOG FILE:       ./MOOSLog_26_2_2019_____12_42_38/MOOSLog_26_2_2019_____12_42_38._moos
-%% FILE OPENED ON  Wed Dec 31 19:00:00 1969
-%% LOGSTART               1551202958.13
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 /************************************************************/
 /*    NAME: Kimberly Jung                                              */
 /*    ORGN: MIT                                             */
@@ -45,15 +40,20 @@ ProcessConfig = pPrimeFactor
 
 ProcessConfig = uTimerScript
 {
-  event = var=NUM_VALUE, val="48",  time = 0.50
-  event = var=NUM_VALUE, val="234", time = 1.00
-  event = var=NUM_VALUE, val="117", time = 1.50
-  event = var=NUM_VALUE, val="90090", time = 2.0
-  event = var=NUM_VALUE, val="48", time = 2.5
-  event = var=NUM_VALUE, val="482", time = 3.0
-  event = var=NUM_VALUE, val="8302830", time = 3.0
-  event = var=NUM_VALUE, val="54", time = 3.5
-  event = var=NUM_VALUE, val="345", time = 4.0
+
+   event  = var=NUM_VALUE, val="281474976710656", time=0.25
+   
+  // event  = var=NUM_VALUE, val="112582705942171", time=0.25
+  // event  = var=NUM_VALUE, val="115797848077099", time=0.50
+  // event  = var=NUM_VALUE, val="117463495419967", time=0.75
+
+   event  = var=NUM_VALUE, val="125", time=1.00
+   event  = var=NUM_VALUE, val="225", time=1.25
+   event  = var=NUM_VALUE, val="325", time=1.50
+
+  // event  = var=NUM_VALUE, val="123939877913659", time=1.75
+  // event  = var=NUM_VALUE, val="126794093929207", time=2.00
+  // event  = var=NUM_VALUE, val="129263144299543", time=2.25
 
   reset_max  = 0
   reset_time = all-posted
@@ -75,4 +75,3 @@ ProcessCongif = pLogger
   LOG = NUM_VALUE @ 0
   LOG = PRIME_RESULT @ 0
 }
-
