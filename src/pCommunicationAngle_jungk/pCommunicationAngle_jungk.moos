@@ -1,0 +1,63 @@
+
+
+ServerHost = oceanai.mit.edu
+ServerPort = 9011
+
+//------------------------------------------
+// Antler configuration  block
+ProcessConfig = ANTLER
+{
+  MSBetweenLaunches = 200
+
+  Run = MOOSDB       @ NewConsole = false
+  Run = uXMS         @ NewConsole = true
+  Run = pCommunicationAngle_jungk    @ NewConsole = false
+}
+
+
+//------------------------------------------
+// First pXRelay configuration block
+
+ProcessConfig = pXRelay_APPLES
+{
+   AppTick   = 4
+   CommsTick = 4
+ 
+   OUTGOING_VAR = APPLES
+   INCOMING_VAR = PEARS
+}
+
+//------------------------------------------
+// Second pXRelay configuration block
+
+//------------------------------------------
+// uXMS configuration block
+
+ProcessConfig = uXMS
+{
+   AppTick   = 4
+   CommsTick = 4
+ 
+   VAR = VEHICLE_NAME, COLLABORATOR_NAME, NAV_X, NAV_Y
+   VAR = NAV_DEPTH, NAV_HEADING, NAV_SPEED
+   VAR = NEPTUNE_NAV_X
+   VAR = NEPTUNE_NAV_Y
+   VAR = NEPTUNE_NAV_DEPTH
+   VAR = NEPTUNE_NAV_HEADING
+   VAR = NEPTUNE_NAV_SPEED
+   VAR = ACOUSTIC_PATH_REF, CONNECTIVITY_LOCATION_REF
+   VAR = Z_MAX
+   VAR = ELEV_ANGLE_SPERM, ELEV_ANGLE_NEPTUNE
+   VAR = TRANSMISSION_LOSS
+   VAR = NEW_TRANSMIT_LOC, TRANSMIT_SUCCESS
+   VAR = COMMSPOSSIBLE
+ 
+
+//------------------------------------------------
+// pCommunicationAngle_jungk config block
+
+ProcessConfig = pCommunicationAngle_jungk
+{
+   AppTick   = 4
+   CommsTick = 4
+}
