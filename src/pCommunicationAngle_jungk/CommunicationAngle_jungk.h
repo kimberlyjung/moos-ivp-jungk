@@ -9,6 +9,11 @@
 #define CommunicationAngle_jungk_HEADER
 
 #include "MOOS/libMOOS/MOOSLib.h"
+#include <cstdlib>
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <cmath>
 
 class CommunicationAngle_jungk : public CMOOSApp
 {
@@ -37,13 +42,13 @@ class CommunicationAngle_jungk : public CMOOSApp
    double const pi           = 3.14159;  // pi
    double const max_depth    = 6000;
    double const angle_change = .0001; //delta theta for transmission loss calculation
+   std::string const kimID        = "jungk@mit.edu";
 
  private: // State variables
    double R, x_R; //virtual circle radius and x-coordinate on the r-plane
    double range; //coordinate shift for x & y plane
    double sperm_angle; //arc angle with virtual circle
    double neptune_angle; //arc angle with virtual circle
-   double circle_x;
    double neptune_x, neptune_y, neptune_z;
    double sperm_x, sperm_y, sperm_z;
    double s; //arclength
@@ -57,6 +62,7 @@ class CommunicationAngle_jungk : public CMOOSApp
    bool commspossible;
    double base_angle, central_angle, phi;
    double R_new, x_R_new, sperm_x_new, sperm_y_new;
+   std::stringstream ss_connectivity, ss_acousticpath;
 };
 
 #endif 

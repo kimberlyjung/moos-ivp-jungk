@@ -11,6 +11,12 @@ iterator
 -
 MBUtils.h
 /home/whoiuser/moos-ivp-jungk/src/pCommunicationAngle_jungk/MBUtils.h
+CommunicationAngle_jungk.h
+/home/whoiuser/moos-ivp-jungk/src/pCommunicationAngle_jungk/CommunicationAngle_jungk.h
+
+/home/whoiuser/moos-ivp-jungk/src/pCommunicationAngle_jungk/CommunicationAngle_jungk.h
+MOOS/libMOOS/MOOSLib.h
+/home/whoiuser/moos-ivp-jungk/src/pCommunicationAngle_jungk/MOOS/libMOOS/MOOSLib.h
 cstdlib
 -
 sstream
@@ -19,12 +25,8 @@ string
 -
 iostream
 -
-CommunicationAngle_jungk.h
-/home/whoiuser/moos-ivp-jungk/src/pCommunicationAngle_jungk/CommunicationAngle_jungk.h
-
-/home/whoiuser/moos-ivp-jungk/src/pCommunicationAngle_jungk/CommunicationAngle_jungk.h
-MOOS/libMOOS/MOOSLib.h
-/home/whoiuser/moos-ivp-jungk/src/pCommunicationAngle_jungk/MOOS/libMOOS/MOOSLib.h
+cmath
+-
 
 /home/whoiuser/moos-ivp-jungk/src/pCommunicationAngle_jungk/CommunicationAngle_jungk_Info.cpp
 cstdlib

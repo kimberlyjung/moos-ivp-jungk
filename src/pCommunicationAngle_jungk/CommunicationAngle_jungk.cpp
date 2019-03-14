@@ -7,10 +7,6 @@
 
 #include <iterator>
 #include "MBUtils.h"
-#include <cstdlib>
-#include <sstream>
-#include <string>
-#include <iostream>
 #include "CommunicationAngle_jungk.h"
 
 using namespace std;
@@ -31,7 +27,6 @@ CommunicationAngle_jungk::CommunicationAngle_jungk()
   sperm_x = 0;
   sperm_y = 0;
   sperm_z = 0;
-  circle_x = 0;
   s=0;
   theta_N_0=0;
   theta_S_0=0;
@@ -118,12 +113,15 @@ bool CommunicationAngle_jungk::Iterate()
       //Transmit if does not hit the ocean floor
      if(z_max<=max_depth) {
         commspossible=true;
-        Notify("TRANSMIT_SUCCESS",Transmit(sperm_x, sperm_y, sperm_z));
+        ss_connectivity<<Transmit(sperm_x, sperm_y, sperm_z)<<",id="<<kimID;
      }
      else {
        AvoidFloor();
      }
-     Notify("COMMSPOSSIBLE",to_string(commspossible));
+     Notify("ACOUSTIC_PATH",ss_acousticpath.str());
+     Notify("CONNECTIVITY_LOCATION",ss_connectivity.str());
+     ss_acousticpath.str("");
+     ss_connectivity.str("");
   }
   return(true);
 }
@@ -219,7 +217,7 @@ void CommunicationAngle_jungk::Calcs()
   //Find declination angle: sperm to neptune, from horizontal
   theta_S_0 = acos(h1/R);
   theta_N_0 = acos(h2/R);
-  Notify("ELEV_ANGLE_SPERM",to_string(ConvertDegrees(-theta_S_0)));
+  ss_acousticpath<<"elev_angle="<<to_string(ConvertDegrees(-theta_S_0));
   ss2<<"neptune_angle"<<to_string(ConvertDegrees(theta_N_0));
 
   //for debugging
@@ -235,7 +233,7 @@ void CommunicationAngle_jungk::AvoidFloor()
   phi=acos(x_R);//angle in x-y plane, cos(phi)=x-comp, sin(phi)=y-comp
   sperm_x_new=x_R_new*cos(phi);
   sperm_y_new=x_R_new*sin(phi);
-  Notify("NEW_TRANSMIT_LOC",Transmit(sperm_x_new, sperm_y_new, sperm_z));
+  ss_connectivity<<Transmit(sperm_x_new, sperm_y_new, sperm_z)<<",id="<<kimID;
 }
 
 double CommunicationAngle_jungk::ConvertDegrees(double radians) const
@@ -245,20 +243,25 @@ double CommunicationAngle_jungk::ConvertDegrees(double radians) const
 
 double CommunicationAngle_jungk::TransmissionLoss()
 {
-  double new_R = c_z0_S/(g*cos(theta_S_0+angle_change));
-  double new_range = sqrt(pow(new_R,2)-pow(h2,2));
+  //calculate the new range to calc J
+  double new_elev_angle=theta_S_0+angle_change;
+  double new_R = c_z0_S/(g*cos(new_elev_angle));
+  double new_grazing_angle = acos(c_z0_N/c_z0_S*cos(theta_S_0+angle_change));  
+  double new_range = new_R*(sin(new_elev_angle)-sin(new_grazing_angle));
+
+  //calculate J
   double J = (range/sin(theta_N_0))*((new_range-range)/angle_change);
-  double pressure_field = 1/(4*pi)*sqrt(c_z0_N*cos(theta_S_0)/(c_z0_S*J));
-  if(debug) {cout<<"J="<<J<<",pressure="<<pressure_field<<endl;}
-  double m_t_loss = -20*log10(pressure_field);
-  Notify("TRANSMISSION_LOSS=",to_string(m_t_loss));
+  double pressure_field = 1/(4*pi)*sqrt(abs(c_z0_N*cos(theta_S_0)/(c_z0_S*J)));
+  if(debug) {cout<<"J="<<J<<",pressure="<<pressure_field<<"log10pressure="<<log10(pressure_field)<<endl;}
+  double m_t_loss = -10*log10(pressure_field/(.25*pi));
+  ss_acousticpath<<",transmission_loss="<<to_string(m_t_loss)<<",id="<<kimID;
   return (m_t_loss);
 }
 
 std::string CommunicationAngle_jungk::Transmit(double x, double y, double z) 
 {
   stringstream ss;
-  ss<<"X:"<<to_string(x)<<",Y:"<<to_string(y)<<",Z:"<<to_string(z);
+  ss<<"x="<<to_string(x)<<",y="<<to_string(y)<<",z="<<to_string(z);
   return(ss.str());
 }
 
