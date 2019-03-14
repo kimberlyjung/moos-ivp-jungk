@@ -114,10 +114,6 @@ bool CommunicationAngle_jungk::Iterate()
     {
       Calcs();
       TransmissionLoss();
-  
-      //Find maximum depth from Virtual Circle minimum
-      z_max = c_z0_S/(g*cos(theta_S_0))-c_0/g;
-      Notify("Z_MAX",to_string(z_max));
 
       //Transmit if does not hit the ocean floor
      if(z_max<=max_depth) {
@@ -181,7 +177,8 @@ void CommunicationAngle_jungk::RegisterVariables()
 
 void CommunicationAngle_jungk::Calcs()
 {
-  stringstream ss;
+  stringstream ss2;
+  double plane_s, plane_n, A, p;
   
   //Establish sound speeds at depth and z-heights from vehicles to Virtual Circle 
   h1=c_0/g+sperm_z;
@@ -191,33 +188,42 @@ void CommunicationAngle_jungk::Calcs()
   
   //Find 3-D Range between Sperm and Neptune: x, y, z
   range=pow(((pow((sperm_x-neptune_x),2) + pow((sperm_x-neptune_y), 2)) + pow(sperm_z-neptune_z, 2)), 0.5);
-  ss<<"range="<<to_string(range);
+  ss2<<"range="<<to_string(range);
 
   //Find x-y Range between Sperm and Neptune: x, y
   x_R=pow((pow((sperm_x-neptune_x),2) + pow((sperm_x-neptune_y), 2)), 0.5);
   //x_R=pow(neptune_z,2)/(2*range)+(c_0*neptune_z)/(g*range)+(range/2)-pow(sperm_z,2)/(2*range)-(sperm_z*c_0/(range*g));
 	  
-  //Find Radius of Virtual Circle
-  R=sqrt(pow(h1,2)+pow(x_R,2));
-  ss<<",radius="<<to_string(R);
+  //Find Radius of Virtual Circle using geometry
+        //R=sqrt(pow(h1,2)+pow(x_R,2));
+  plane_s=sqrt(pow(sperm_x,2)+pow(sperm_y,2));
+  plane_n=sqrt(pow(neptune_x,2)+pow(neptune_y,2));
+  A=plane_n-plane_s;
+  p=(pow(h2,2)-pow(h1,2)+pow(A,2))/(2*A);
+  R=sqrt(pow(h1,2)+pow(p,2));
+  ss2<<",radius="<<to_string(R);
 
   //Find base triangle angle and central angle
   base_angle=acos((pow(range,2))/(2*R*range));             
   central_angle=pi-2*base_angle;
-  ss<<",central_angle="<<to_string(central_angle);
+  ss2<<",central_angle="<<to_string(ConvertDegrees(central_angle));
 
   //Find arc length
   s=R*central_angle;
-  ss<<",arclength"<<to_string(s);
+  ss2<<",arclength="<<to_string(s);
+
+  //Find maximum depth from Virtual Circle minimum
+  z_max = c_z0_S/(g*cos(theta_S_0))-c_0/g;
+  ss2<<"z_max="<<to_string(z_max);
 
   //Find declination angle: sperm to neptune, from horizontal
   theta_S_0 = acos(h1/R);
   theta_N_0 = acos(h2/R);
-  Notify("ELEV_ANGLE_SPERM",to_string(ConvertDegrees(theta_S_0)));
-  Notify("ELEV_ANGLE_NEPTUNE",to_string(ConvertDegrees(theta_N_0)));
+  Notify("ELEV_ANGLE_SPERM",to_string(ConvertDegrees(-theta_S_0)));
+  ss2<<"neptune_angle"<<to_string(ConvertDegrees(theta_N_0));
 
   //for debugging
-  Notify("STATUS",ss.str());
+  if(debug) {Notify("STATUS",ss2.str());}
 }
 
 void CommunicationAngle_jungk::AvoidFloor()
