@@ -1,12 +1,13 @@
 /-------------------------------------------------
-// NAME: M. Benjamin, MIT CSAIL
-// FILE: alpha.moos
+// NAME: K. Jung
+// Lab 7, March 2019
+// FILE: bravo_dbl.moos
 //-------------------------------------------------
 
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = alpha
-MOOSTimeWarp = 1
+Community    = bravo
+MOOSTimeWarp = 10
 
 // Forest Lake
 LatOrigin  = 43.825300 
@@ -98,7 +99,7 @@ ProcessConfig = pHelmIvP
 
   bhv_dir_not_found_ok = true
 
-  behaviors  = alpha.bhv
+  behaviors  =  bravo_loiter_west, bravo_loiter_east
   domain     = course:0:359:360
   domain     = speed:0:4:41
 }

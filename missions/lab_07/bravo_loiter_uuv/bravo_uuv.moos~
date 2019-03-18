@@ -1,12 +1,14 @@
 /-------------------------------------------------
-// NAME: M. Benjamin, MIT CSAIL
-// FILE: alpha.moos
+// NAME: K. Jung
+// 2.680
+// Lab 7, March 2019
+// FILE: bravo_dbl.moos
 //-------------------------------------------------
 
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = alpha
-MOOSTimeWarp = 1
+Community    = bravo
+MOOSTimeWarp = 5
 
 // Forest Lake
 LatOrigin  = 43.825300 
@@ -98,7 +100,7 @@ ProcessConfig = pHelmIvP
 
   bhv_dir_not_found_ok = true
 
-  behaviors  = alpha.bhv
+  behaviors  = bravo_dbl.bhv
   domain     = course:0:359:360
   domain     = speed:0:4:41
 }
@@ -185,6 +187,10 @@ ProcessConfig = pMarineViewer
   left_context[return_point]  = RETURN_UPDATE = "points=$(XPOS),$(YPOS)"
   left_context[return_point]  = VIEW_POINT = x=$(XPOS),y=$(YPOS),label=return_point
   left_context[return_point]  = RETURN=true
+
+  right_context[east_loiter_choose]  = LOITER_REGION=east
+  right_context[east_loiter_choose]  = RETURN=false
+  right_context[east_loiter_choose]  = DEPLOY=true
 
   right_context[deploy] = DEPLOY=true
   right_context[deploy] = MOOS_MANUAL_OVERRIDE=false

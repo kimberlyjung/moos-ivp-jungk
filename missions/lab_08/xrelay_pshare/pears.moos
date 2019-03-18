@@ -1,0 +1,77 @@
+
+// Kimberly Jung
+// 2.680, Lab 8
+// pears.moos
+
+ServerHost = localhost
+ServerPort = 9000
+Community  = pears
+
+//------------------------------------------
+// Antler configuration  block
+ProcessConfig = ANTLER
+{
+  MSBetweenLaunches = 200
+  Run = pShare 	 @ NewConsole = false
+  Run = MOOSDB	 @ NewConsole = false
+  Run = pXRelay	 @ NewConsole = true
+  Run = uXMS	 @ NewConsole = true
+}
+
+//------------------------------------------
+// pShare configuration  block
+ProcessConfig = pShare
+ {
+   AppTick    = 4
+   CommsTick  = 4
+
+   input  = route = localhost:9201
+
+   output = src_name=PEARS, route=localhost:9200
+ }
+ 
+//------------------------------------------
+// pXRelay_APPLES config block
+
+ProcessConfig = pXRelay_APPLES
+{
+  AppTick	= 1
+  CommsTick	= 1
+
+  INCOMING_VAR  = APPLES
+  OUTGOING_VAR  = PEARS
+}
+
+//------------------------------------------
+// pXRelay_PEARS config block
+
+ProcessConfig = pXRelay
+{
+  AppTick	= 1
+  CommsTick	= 1
+
+  INCOMING_VAR  = APPLES
+  OUTGOING_VAR  = PEARS
+}
+
+//------------------------------------------
+// uXMS config block
+
+ProcessConfig = uXMS
+{
+  AppTick    = 4
+  CommsTick  = 4
+
+  PAUSED            = false
+  DISPLAY_SOURCE    = true
+  DISPLAY_TIME      = true
+  DISPLAY_COMMUNITY = true
+
+  VAR  = APPLES
+  VAR  = PEARS
+  VAR  = PEARS_ITER_HZ
+  VAR  = PEARS_POST_HZ
+}
+
+
+

@@ -1,12 +1,14 @@
-/-------------------------------------------------
-// NAME: M. Benjamin, MIT CSAIL
-// FILE: alpha.moos
+//-------------------------------------------------
+// NAME: K. Jung
+// 2.680
+// Lab 7, March 2019
+// FILE: bravo_uuv_surface.moos
 //-------------------------------------------------
 
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = alpha
-MOOSTimeWarp = 1
+Community    = bravo
+MOOSTimeWarp = 10
 
 // Forest Lake
 LatOrigin  = 43.825300 
@@ -81,6 +83,11 @@ ProcessConfig = uSimMarine
   start_heading = 180
   start_speed   = 0
 
+  buoyancy_rate        = 0.15
+  max_depth_rate       = 5
+  max_depth_rate_speed = 2.0
+  default_water_depth  = 400
+  
   prefix        = NAV
 
   turn_rate     = 40
@@ -98,9 +105,10 @@ ProcessConfig = pHelmIvP
 
   bhv_dir_not_found_ok = true
 
-  behaviors  = alpha.bhv
+  behaviors  = bravo_uuv_surface.bhv
   domain     = course:0:359:360
   domain     = speed:0:4:41
+  domain     = depth:0:100:101
 }
 
 //------------------------------------------
@@ -112,10 +120,22 @@ ProcessConfig = pMarinePID
   CommsTick  = 20
 
   verbose       = true
-  depth_control = false
+  depth_control = true
 
   // SIM_INSTABILITY = 20
 
+  //Pitch PID controller
+  pitch_pid_kp                  = 1.5
+  pitch_pid_kd                  = 0.3
+  pitch_pid_ki                  = 0.004
+  pitch_pid_integral_limit      = 0
+
+  //ZPID controller
+  z_to_pitch_pid_kp             = 0.12
+  z_to_pitch_pid_kd             = 0.1
+  z_to_pitch_pid_ki             = 0.004
+  z_to_pitch_pid_integral_limit = 0.05
+  
   // Yaw PID controller
   yaw_pid_kp		 = 1.2
   yaw_pid_kd		 = 0.0
@@ -131,6 +151,8 @@ ProcessConfig = pMarinePID
   //MAXIMUMS
   maxrudder    = 100
   maxthrust    = 100
+  maxpitch     = 15
+  maxelevator  = 13
 
   // A non-zero SPEED_FACTOR overrides use of SPEED_PID
   // Will set DESIRED_THRUST = DESIRED_SPEED * SPEED_FACTOR
@@ -155,6 +177,7 @@ ProcessConfig = pMarineViewer
   hash_delta           = 50
   hash_shade           = 0.22
   hash_viewable        = true
+  vehicles_name_mode   = names+depth
 
   trails_point_size   = 1
 
@@ -186,6 +209,10 @@ ProcessConfig = pMarineViewer
   left_context[return_point]  = VIEW_POINT = x=$(XPOS),y=$(YPOS),label=return_point
   left_context[return_point]  = RETURN=true
 
+  right_context[east_loiter_choose]  = LOITER_REGION=east
+  right_context[east_loiter_choose]  = RETURN=false
+  right_context[east_loiter_choose]  = DEPLOY=true
+
   right_context[deploy] = DEPLOY=true
   right_context[deploy] = MOOS_MANUAL_OVERRIDE=false
   right_context[deploy] = RETURN=false
@@ -216,8 +243,8 @@ ProcessConfig = pNodeReporter
   AppTick    = 2
   CommsTick	 = 2
 
-  platform_type   = kayak
-  platform_color  = yellow
+  platform_type   = uuv
+  platform_color  = red
   platform_length = 4
 }
 
