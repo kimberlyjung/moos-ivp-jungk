@@ -252,30 +252,12 @@ Behavior = BHV_Timer
    runflag      = WAITED=false         // example
    endflag      = NEED_TO_SURFACE=true          // example
    updates      = TIMER_UPDATES        // example
+   perpetual    = true
 
    // Parameters specific to this behavior
    // ------------------------------------
    // None
  }
-
-//----------------------------------------------
-//Behavior = BHV_Timer
- //{
-   // General Behavior Parameters
-   // ---------------------------
-   //name         = bravo_bhv_above_timer            // default
-  // condition    = NEED_TO_SURFACE=true
-   //duration     = 60                  // example
-   //idleflag     = WAITING=false        // example
-  // runflag      = WAITING=true         // example
-  // runflag      = WAITED=false         // example
- //  endflag      = NEED_TO_SURFACE=false
-   //updates      = TIMER_UPDATES        // example
-
-   // Parameters specific to this behavior
-   // ------------------------------------
-   // None
-// }
 
  //----------------------------------------------
 Behavior = BHV_ConstantDepth

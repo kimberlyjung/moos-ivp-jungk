@@ -8,7 +8,7 @@
 ServerHost   = localhost
 ServerPort   = 9000
 Community    = bravo
-MOOSTimeWarp = 10
+MOOSTimeWarp = 12
 
 // Forest Lake
 LatOrigin  = 43.825300 

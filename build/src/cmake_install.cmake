@@ -42,7 +42,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/whoiuser/moos-ivp-jungk/build/src/lib_behaviors-test/cmake_install.cmake")
   include("/home/whoiuser/moos-ivp-jungk/build/src/pXRelayTest/cmake_install.cmake")
   include("/home/whoiuser/moos-ivp-jungk/build/src/pExampleApp/cmake_install.cmake")
-  include("/home/whoiuser/moos-ivp-jungk/build/src/pCommunicationAngle_jungk/cmake_install.cmake")
+  include("/home/whoiuser/moos-ivp-jungk/build/src/pGenPath/cmake_install.cmake")
+  include("/home/whoiuser/moos-ivp-jungk/build/src/pPointAssign/cmake_install.cmake")
 
 endif()
 

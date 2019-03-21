@@ -8,7 +8,7 @@ ServerPort   = 9000
 Community    = alpha
 //----  Next Line was commented and replaced with a command line overload ---- //
 //MOOSTimeWarp = 1    (default)
-MOOSTimeWarp = 20
+MOOSTimeWarp = 1
 
 // Forest Lake
 LatOrigin  = 43.825300 
@@ -184,9 +184,13 @@ ProcessConfig = pMarineViewer
   // left_context[survey-point] = MOOS_MANUAL_OVERRIDE=false
   // left_context[survey-point] = RETURN=false
 
-  right_context[return] = DEPLOY=true
-  right_context[return] = MOOS_MANUAL_OVERRIDE=false
-  right_context[return] = RETURN=false
+  left_context[return_point]  = RETURN_UPDATE = "points=$(XPOS),$(YPOS)"
+  left_context[return_point]  = VIEW_POINT = x=$(XPOS),y=$(YPOS),label=return_point
+  left_context[return_point]  = RETURN=true
+
+  right_context[deploy] = DEPLOY=true
+  right_context[deploy] = MOOS_MANUAL_OVERRIDE=false
+  right_context[deploy] = RETURN=false
 
   scope  = RETURN
   scope  = WPT_STAT

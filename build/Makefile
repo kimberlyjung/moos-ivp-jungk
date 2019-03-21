@@ -150,17 +150,30 @@ pExampleApp/fast:
 .PHONY : pExampleApp/fast
 
 #=============================================================================
-# Target rules for targets named pCommunicationAngle_jungk
+# Target rules for targets named pGenPath
 
 # Build rule for target.
-pCommunicationAngle_jungk: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pCommunicationAngle_jungk
-.PHONY : pCommunicationAngle_jungk
+pGenPath: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pGenPath
+.PHONY : pGenPath
 
 # fast build rule for target.
-pCommunicationAngle_jungk/fast:
-	$(MAKE) -f src/pCommunicationAngle_jungk/CMakeFiles/pCommunicationAngle_jungk.dir/build.make src/pCommunicationAngle_jungk/CMakeFiles/pCommunicationAngle_jungk.dir/build
-.PHONY : pCommunicationAngle_jungk/fast
+pGenPath/fast:
+	$(MAKE) -f src/pGenPath/CMakeFiles/pGenPath.dir/build.make src/pGenPath/CMakeFiles/pGenPath.dir/build
+.PHONY : pGenPath/fast
+
+#=============================================================================
+# Target rules for targets named pPointAssign
+
+# Build rule for target.
+pPointAssign: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pPointAssign
+.PHONY : pPointAssign
+
+# fast build rule for target.
+pPointAssign/fast:
+	$(MAKE) -f src/pPointAssign/CMakeFiles/pPointAssign.dir/build.make src/pPointAssign/CMakeFiles/pPointAssign.dir/build
+.PHONY : pPointAssign/fast
 
 # Help Target
 help:
@@ -173,7 +186,8 @@ help:
 	@echo "... BHV_SimpleWaypoint"
 	@echo "... pXRelayTest"
 	@echo "... pExampleApp"
-	@echo "... pCommunicationAngle_jungk"
+	@echo "... pGenPath"
+	@echo "... pPointAssign"
 .PHONY : help
 
 

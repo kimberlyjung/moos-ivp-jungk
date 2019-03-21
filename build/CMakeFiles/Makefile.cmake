@@ -13,8 +13,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.10.2/CMakeSystem.cmake"
   "../src/CMakeLists.txt"
   "../src/lib_behaviors-test/CMakeLists.txt"
-  "../src/pCommunicationAngle_jungk/CMakeLists.txt"
   "../src/pExampleApp/CMakeLists.txt"
+  "../src/pGenPath/CMakeLists.txt"
+  "../src/pPointAssign/CMakeLists.txt"
   "../src/pXRelayTest/CMakeLists.txt"
   "/home/whoiuser/moos-ivp/build/MOOS/MOOSCore/MOOSConfig.cmake"
   "/home/whoiuser/moos-ivp/build/MOOS/MOOSCore/MOOSConfigVersion.cmake"
@@ -52,7 +53,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "src/lib_behaviors-test/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/pXRelayTest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/pExampleApp/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "src/pCommunicationAngle_jungk/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/pGenPath/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/pPointAssign/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -60,5 +62,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/DependInfo.cmake"
   "src/pXRelayTest/CMakeFiles/pXRelayTest.dir/DependInfo.cmake"
   "src/pExampleApp/CMakeFiles/pExampleApp.dir/DependInfo.cmake"
-  "src/pCommunicationAngle_jungk/CMakeFiles/pCommunicationAngle_jungk.dir/DependInfo.cmake"
+  "src/pGenPath/CMakeFiles/pGenPath.dir/DependInfo.cmake"
+  "src/pPointAssign/CMakeFiles/pPointAssign.dir/DependInfo.cmake"
   )

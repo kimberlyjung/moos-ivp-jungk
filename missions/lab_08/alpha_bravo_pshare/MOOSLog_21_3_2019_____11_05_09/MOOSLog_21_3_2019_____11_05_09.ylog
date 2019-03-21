@@ -1,0 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LOG FILE:       ./MOOSLog_21_3_2019_____11_05_09/MOOSLog_21_3_2019_____11_05_09.ylog
+%% FILE OPENED ON  Wed Dec 31 19:00:00 1969
+%% LOGSTART               1553180708.49
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+1.061404   MOOS_DEBUG           pMarinePID           ** NEW CONTROLLER GAINS ARE ** 
+1.061541   MOOS_DEBUG           pMarinePID           YAW_PID_KP             = 1.200 
+1.061606   MOOS_DEBUG           pMarinePID           YAW_PID_KD             = 0.000 
+1.061655   MOOS_DEBUG           pMarinePID           YAW_PID_KI             = 0.300 
+1.061717   MOOS_DEBUG           pMarinePID           YAW_PID_INTEGRAL_LIMIT = 0.070 
+1.061768   MOOS_DEBUG           pMarinePID           MAXRUDDER              = 100.000 
+1.063565   MOOS_DEBUG           pMarinePID           SPEED_PID_KP           = 1.000 
+1.063639   MOOS_DEBUG           pMarinePID           SPEED_PID_KD           = 0.000 
+1.063691   MOOS_DEBUG           pMarinePID           SPEED_PID_KI           = 0.000 
+1.063743   MOOS_DEBUG           pMarinePID           SPEED_PID_INTEGRAL_LIMIT = 0.070 
+1.063796   MOOS_DEBUG           pMarinePID           MAXTHRUST              = 100.000 
+1.505291   MOOS_DEBUG           pHelmIvP             pHelmIvP AllStop: ManualOverride 
+22.1675    MOOS_DEBUG           pMarinePID           pMarinePID Control Is On 
+22.16753   MOOS_DEBUG           pMarinePID           Paused Due To Tardy HELM Input: THRUST=0 
+22.29052   MOOS_DEBUG           pHelmIvP             pHelmIvP AllStop: clear 
+42.21259   MOOS_DEBUG           pMarinePID           pMarinePID Control Is On 
+44.72534   MOOS_DEBUG           pMarinePID           pMarinePID Control Is On 

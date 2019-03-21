@@ -88,9 +88,11 @@ ProcessConfig = pMarineViewer
 
   button_one = DEPLOY # DEPLOY_ALPHA=true
   button_one = DEPLOY # DEPLOY_BRAVO=true
+  button_one = DEPLOY # DEPLOY = true
   button_one = MOOS_MANUAL_OVERRIDE=false # RETURN=false
   button_two = RETURN # RETURN_ALPHA=true
   button_two = RETURN # RETURN_BRAVO=true
+  button_two = RETURN # RETURN = true
 
   action  = MENU_KEY=Deploy-Alpha # DEPLOY_ALPHA = true # RETURN_ALPHA = false
   action  = MENU_KEY=Deploy-Bravo # DEPLOY_BRAVO = true # RETURN_BRAVO = false
@@ -110,9 +112,12 @@ ProcessConfig = pShare
 
   output = src_name=RETURN_ALPHA, dest_name=RETURN, route=localhost:9201
   output = src_name=DEPLOY_ALPHA, dest_name=DEPLOY, route=localhost:9201
+  output = src_name=DEPLOY, dest_name=DEPLOY, route=localhost:9201
+  output = src_name=DEPLOY, dest_name=DEPLOY, route=localhost:9202
   output = src_name=MOOS_MANUAL_OVERRIDE, dest_name=MOOS_MANUAL_OVERRIDE, route=localhost:9201
   output = src_name=RETURN_BRAVO, dest_name=RETURN, route=localhost:9202
   output = src_name=DEPLOY_BRAVO, dest_name=DEPLOY, route=localhost:9202
   output = src_name=MOOS_MANUAL_OVERRIDE, dest_name=MOOS_MANUAL_OVERRIDE, route=localhost:9202
-   
+  output = src_name=RETURN, dest_name=RETURN, route=localhost:9201
+  output = src_name=RETURN, dest_name=RETURN, route=localhost:9202   
  }
