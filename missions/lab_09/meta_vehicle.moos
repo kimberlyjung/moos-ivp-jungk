@@ -5,6 +5,7 @@
 
 ServerHost = localhost
 ServerPort = $(VPORT)
+Simulator = true
 
 // Community name IS the vehicle name
 Community  = $(VNAME)
@@ -29,15 +30,6 @@ Processconfig = ANTLER
   Run = pGenPath         @ NewConsole = true
 }
 
-//------------------------------------------------
-// pGenPath config block
-
-ProcessConfig = pGenPath
-{
-   AppTick   = 4
-   CommsTick = 4
-}
-
 #include plug_uSimMarine.moos
 #include plug_pLogger.moos
 #include plug_pNodeReporter.moos
@@ -47,3 +39,4 @@ ProcessConfig = pGenPath
 #include plug_pShare.moos
 #include plug_pHostInfo.moos
 #include plug_uFldNodeBroker.moos
+#include plug_pGenPath.moos

@@ -110,12 +110,14 @@ bool PointAssign::Iterate()
 		{
 		  postViewPoint(x,y,id, "red");
 		  Notify("VISIT_POINT_HENRY", m_vector[i]);
+		  Notify("VIEW_MARKER", "type=triangle,"+m_vector[i]+",label=henry,color=red,width=4");
 		  henry_count++;
 		} 
 	      else
 		{
 		  postViewPoint(x,y,id, "yellow");
 		  Notify("VISIT_POINT_GILDA", m_vector[i]);
+		  Notify("VIEW_MARKER", "type=triangle,"+m_vector[i]+",label=gilda,color=yellow,width=4");
 		  gilda_count++;
 		}
 	    }
@@ -126,12 +128,14 @@ bool PointAssign::Iterate()
 		{
 		  postViewPoint(x,y,id, "red");
 		  Notify("VISIT_POINT_HENRY", m_vector[i]);
+		  Notify("VIEW_MARKER", "type=triangle,"+m_vector[i]+",label=henry,color=red,width=4");
 		  henry_count++;
 		} 
 	      else //GILDA=east
 		{
 		  postViewPoint(x,y,id, "yellow");
 		  Notify("VISIT_POINT_GILDA", m_vector[i]);
+		  Notify("VIEW_MARKER", "type=triangle,"+m_vector[i]+",label=gilda,color=yellow,width=4");
 		  gilda_count++;
 		} 
 	    }
