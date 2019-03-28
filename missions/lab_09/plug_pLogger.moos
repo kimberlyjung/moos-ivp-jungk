@@ -18,4 +18,9 @@ ProcessConfig = pLogger
   WildCardOmitPattern = *_STATUS
 
   CompressAlogs = false
+
+  Log = VISIT_POINT @ 0 nosync
+  Log = VISIT_POINT_HENRY @ 0 nosync
+  Log = VISIT_POINT_GILDA @ 0 nosync
+
 }

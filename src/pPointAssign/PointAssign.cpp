@@ -20,6 +20,7 @@ using namespace std;
 PointAssign::PointAssign()
 {
   m_finished=false;
+  m_sent_all=false;
   m_assign_by_region=false;
   gilda_count=0;
   henry_count=0;
@@ -63,9 +64,6 @@ bool PointAssign::OnNewMail(MOOSMSG_LIST &NewMail)
     bool   mstr  = msg.IsString();
 #endif
     
-    if(key == "FOO") 
-      cout << "great!";
-    
     else if(key != "APPCAST_REQ") // handled by AppCastingMOOSApp
       reportRunWarning("Unhandled Mail: " + key);
   }
@@ -90,6 +88,7 @@ bool PointAssign::Iterate()
 {
   AppCastingMOOSApp::Iterate();
 
+  if(!m_finished || m_sent_all) {return true;} //if not yet finished, don't process yet
   for(unsigned int i=0; i<m_vector.size(); i++)
     {
       if(m_vector[i]=="firstpoint" || m_vector[i]=="lastpoint")
@@ -97,7 +96,7 @@ bool PointAssign::Iterate()
 	  Notify("VISIT_POINT_GILDA", m_vector[i]);
 	  Notify("VISIT_POINT_HENRY", m_vector[i]);
 	}
-      else
+      else 
 	{
 	  int x=stoi(tokStringParse(m_vector[i],"x", ',', '='));
 	  int y=stoi(tokStringParse(m_vector[i],"y", ',', '='));
@@ -110,37 +109,35 @@ bool PointAssign::Iterate()
 		{
 		  postViewPoint(x,y,id, "red");
 		  Notify("VISIT_POINT_HENRY", m_vector[i]);
-		  Notify("VIEW_MARKER", "type=triangle,"+m_vector[i]+",label=henry,color=red,width=4");
 		  henry_count++;
 		} 
 	      else
 		{
 		  postViewPoint(x,y,id, "yellow");
 		  Notify("VISIT_POINT_GILDA", m_vector[i]);
-		  Notify("VIEW_MARKER", "type=triangle,"+m_vector[i]+",label=gilda,color=yellow,width=4");
 		  gilda_count++;
 		}
 	    }
-	  else
+	  else 
 	    //assign by region to Henry/Gilda
 	    {
 	      if(x>112) //HENRY=west
 		{
 		  postViewPoint(x,y,id, "red");
 		  Notify("VISIT_POINT_HENRY", m_vector[i]);
-		  Notify("VIEW_MARKER", "type=triangle,"+m_vector[i]+",label=henry,color=red,width=4");
 		  henry_count++;
 		} 
 	      else //GILDA=east
 		{
 		  postViewPoint(x,y,id, "yellow");
 		  Notify("VISIT_POINT_GILDA", m_vector[i]);
-		  Notify("VIEW_MARKER", "type=triangle,"+m_vector[i]+",label=gilda,color=yellow,width=4");
 		  gilda_count++;
 		} 
 	    }
          }
     }
+  m_sent_all=true;
+  Notify("POINTS_RECEIVED", "true");
   AppCastingMOOSApp::PostReport();
   return(true);
 }
