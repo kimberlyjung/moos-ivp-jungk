@@ -42,7 +42,7 @@ class PointAssign : public AppCastingMOOSApp
 
  private: // State variables
    vector<string> m_vector;
-   bool m_finished, m_sent_all;
+   bool m_finished, m_sent_all, m_genpath_ready;
    bool m_assign_by_region;
 
    //debug for buildReport

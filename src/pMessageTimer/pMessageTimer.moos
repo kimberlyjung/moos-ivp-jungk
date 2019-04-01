@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pMessageTimer config block
+
+ProcessConfig = pMessageTimer
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+

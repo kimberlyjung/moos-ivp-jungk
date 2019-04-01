@@ -43,7 +43,7 @@ Behavior = BHV_Waypoint
 {
   name      = waypt_return
   pwt       = 100
-  condition = MODE=RETURNING
+  condition = MODE==RETURNING
   endflag   = STATION_KEEP = true
   updates   = RETURN_UPDATES
 
@@ -60,7 +60,7 @@ Behavior = BHV_Waypoint
 {
   name      = waypt_refuel
   pwt       = 100
-  condition = MODE=REFUEL
+  condition = MODE==REFUEL
   endflag   = RETURN=true
   perpetual = true
 
@@ -76,7 +76,7 @@ Behavior = BHV_Waypoint
 { 
   name      = waypt_survey
   pwt       = 100
-  condition = MODE=SURVEYING
+  condition = MODE==SURVEYING
   endflag   = REFUEL_NEEDED=true
 
   updates    = WPT_UPDATE
@@ -107,7 +107,7 @@ Behavior = BHV_StationKeep
 {
   name      = station-keep
   pwt       = 100
-  condition = MODE=STATION-KEEPING
+  condition = MODE==STATION-KEEPING
 
    center_activate = true
       inner_radius = 5

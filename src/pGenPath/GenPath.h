@@ -45,7 +45,7 @@ class GenPath : public AppCastingMOOSApp
    std::vector<std::string> m_wpts_vec; //adding all waypoints as strings from VISIT_POINTS mail
    XYSegList m_ordered_list; //ordered list by shortest distance "greedy"
    double m_least_dist;
-   bool m_finished;
+   bool m_finished, m_all_sent;
    int m_x_curr, m_y_curr;
    int m_visit_point_count, m_WPT_update;
    int m_wvecsize;

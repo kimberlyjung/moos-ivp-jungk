@@ -20,6 +20,7 @@ GenPath::GenPath()
 {
   m_least_dist=9999999;
   m_finished=false;
+  m_all_sent=false;
   m_x_curr=0;
   m_y_curr=0;
   m_visit_point_count=0;
@@ -49,6 +50,7 @@ bool GenPath::OnNewMail(MOOSMSG_LIST &NewMail)
     double dval = msg.GetDouble();
 
     if(key=="VISIT_POINT") {
+      Notify("VISIT_POINT_RECEIVED", sval);
       m_visit_point_count++;
       if(sval=="lastpoint") {m_finished=true;}
       else if(sval!="firstpoint" && !m_finished) {
@@ -88,7 +90,8 @@ bool GenPath::Iterate()
   int m_x_wpt, m_y_wpt;
   double m_distance;
 
-  if(m_finished) {
+  if(m_finished && !m_all_sent) {
+    Notify("POINTS_RECEIVED","true");
     //first for-loop iterates through shrinking list
     while(m_wpts_vec.size()>0) {
       m_least_dist=9999999;
@@ -109,13 +112,14 @@ bool GenPath::Iterate()
       m_x_curr=waypoint.x; 
       m_y_curr=waypoint.y;
       //shrink wpts_vec list by one
-      m_wpts_vec.erase (m_wpts_vec.begin()+index_shortest);
-    //Notify entire ordered list, now that list is finished
-    string str = "points = ";
-    str += m_ordered_list.get_spec();
-    Notify("WPT_UPDATE", str);
-    m_WPT_update++;
+      m_wpts_vec.erase (m_wpts_vec.begin()+index_shortest);    
+      m_WPT_update++;
+      string str = "points = ";
+      str += m_ordered_list.get_spec(); 
+      Notify("WPT_UPDATE", str);
     }
+    Notify("SURVEY","true");
+    m_all_sent=true;
   }
 
   
@@ -156,7 +160,8 @@ bool GenPath::OnStartUp()
 
   }
   
-  registerVariables();	
+  registerVariables();
+  Notify("GENPATH_READY","true");
   return(true);
 }
 

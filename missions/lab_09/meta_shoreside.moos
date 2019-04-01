@@ -96,9 +96,9 @@ ProcessConfig = uTimerScript
    rand_var    = varname=RND_VAL_X, min=-25, max=200, key=at_post
    rand_var    = varname=RND_VAL_Y, min=-175, max=-25, key=at_post
 
-   event = var=VISIT_POINT, val="firstpoint", time=0
-   event = var=VISIT_POINT, val="x=$[RND_VAL_X],y=$[RND_VAL_Y],id=$[TCOUNT]",time=0, amt=100
-   event = var=VISIT_POINT, val="lastpoint", time=0
+   event = var=VISIT_POINT, val="firstpoint", time=8
+   event = var=VISIT_POINT, val="x=$[RND_VAL_X],y=$[RND_VAL_Y],id=$[TCOUNT]",time=9, amt=100
+   event = var=VISIT_POINT, val="lastpoint", time=10
  }       
 
 //------------------------------------------------
@@ -108,6 +108,8 @@ ProcessConfig = pPointAssign
 {
    AppTick   = 4
    CommsTick = 4
+
+   assign_by_region = true
 }
 
 //--------------------------------------------------

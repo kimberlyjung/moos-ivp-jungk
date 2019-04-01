@@ -24,6 +24,7 @@ PointAssign::PointAssign()
   m_assign_by_region=false;
   gilda_count=0;
   henry_count=0;
+  m_genpath_ready=false;
 }
 
 //---------------------------------------------------------
@@ -54,6 +55,7 @@ bool PointAssign::OnNewMail(MOOSMSG_LIST &NewMail)
 	m_vector.push_back(sval);
       }
     else if(key=="ASSIGN_REGION") {m_assign_by_region=true;}
+    else if(key=="GENPATH_READY") {m_genpath_ready=true;}
     
 #if 0 // Keep these around just for template
     string comm  = msg.GetCommunity();
@@ -88,7 +90,7 @@ bool PointAssign::Iterate()
 {
   AppCastingMOOSApp::Iterate();
 
-  if(!m_finished || m_sent_all) {return true;} //if not yet finished, don't process yet
+  if(!m_finished || m_sent_all || !m_genpath_ready) {return true;} //if not yet finished, don't process yet
   for(unsigned int i=0; i<m_vector.size(); i++)
     {
       if(m_vector[i]=="firstpoint" || m_vector[i]=="lastpoint")
@@ -164,13 +166,12 @@ bool PointAssign::OnStartUp()
     string value = line;
 
     bool handled = false;
-    if(param == "foo") {
-      handled = true;
-    }
-    else if(param == "bar") {
-      handled = true;
-    }
 
+    //this below creates a configuration parameter
+    if(param == "assign_by_region") {
+      handled = true;
+      if(tolower(value) == "true") m_assign_by_region=true;
+    }
     if(!handled)
       reportUnhandledConfigWarning(orig);
 
@@ -187,6 +188,7 @@ void PointAssign::registerVariables()
 {
   AppCastingMOOSApp::RegisterVariables();
   Register("VISIT_POINT", 0);
+  Register("GENPATH_READY",0);
 }
 
 
@@ -196,7 +198,7 @@ void PointAssign::registerVariables()
 bool PointAssign::buildReport() 
 {
   m_msgs << "Gilda point count" << gilda_count<< endl;
-  m_msgs << "Henry point  count" << henry_count << endl;
+  m_msgs << "Henry point count" << henry_count << endl;
   
   /*ACTable actab(4);
   actab << "VectorSize | vp_counter | vp_first ";
