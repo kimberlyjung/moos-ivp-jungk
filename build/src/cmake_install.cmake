@@ -1,4 +1,4 @@
-# Install script for directory: /home/whoiuser/moos-ivp-jungk/src
+# Install script for directory: /home/kim/moos-ivp-jungk/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -32,19 +32,9 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
   set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
-# Is this installation the result of a crosscompile?
-if(NOT DEFINED CMAKE_CROSSCOMPILING)
-  set(CMAKE_CROSSCOMPILING "FALSE")
-endif()
-
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/whoiuser/moos-ivp-jungk/build/src/lib_behaviors-test/cmake_install.cmake")
-  include("/home/whoiuser/moos-ivp-jungk/build/src/pXRelayTest/cmake_install.cmake")
-  include("/home/whoiuser/moos-ivp-jungk/build/src/pExampleApp/cmake_install.cmake")
-  include("/home/whoiuser/moos-ivp-jungk/build/src/pGenPath/cmake_install.cmake")
-  include("/home/whoiuser/moos-ivp-jungk/build/src/pPointAssign/cmake_install.cmake")
-  include("/home/whoiuser/moos-ivp-jungk/build/src/pMessageTimer/cmake_install.cmake")
+  include("/home/kim/moos-ivp-jungk/build/src/lib_behaviors-test/cmake_install.cmake")
 
 endif()
 

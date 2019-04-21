@@ -9,6 +9,8 @@
 #define Pulse_HEADER
 
 #include <string>
+#include <sstream>
+#include <iostream>
 #include "IvPBehavior.h"
 
 class BHV_Pulse : public IvPBehavior {
@@ -31,6 +33,19 @@ protected: // Local Utility functions
 protected: // Configuration parameters
 
 protected: // State variables
+
+  double m_curr_time;
+  double m_wpt_time_old;
+  double m_wpt_time_new;
+  double m_wpt_index_old;
+  double m_wpt_index_new;
+  double m_ox;
+  double m_oy;
+  double m_post_time;
+  double m_range;
+  double m_pulse_duration;
+  string m_pulse_color;
+  bool m_debug;
 };
 
 #define IVP_EXPORT_FUNCTION
