@@ -156,14 +156,12 @@ IvPFunction* BHV_ZigLeg::onRunState()
   if(ok) m_cycle_complete = getBufferDoubleVal("CYCLE_COMPLETE", ok);
 
   if(m_cycle_complete==1) {
-  	postEmessage("CYCLE COMPLETE");
   	m_wpt_index_old = 0;
   	m_wpt_index_new = 0;
   	m_cycle_complete = 0;
   }
 
   if(m_wpt_index_new > m_wpt_index_old) {
-  	postEMessage("new wpt index!!!!")
 	m_post_time = m_curr_time + 5; //post time is 5 seconds later
 	m_wpt_index_old = m_wpt_index_new;
 	m_end_time = m_post_time + m_zig_time;
