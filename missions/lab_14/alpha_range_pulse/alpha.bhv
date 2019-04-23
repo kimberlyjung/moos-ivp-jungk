@@ -48,6 +48,7 @@ Behavior=BHV_Waypoint
   endflag    = RETURN = false
   endflag    = DEPLOY = false
   endflag    = MISSION = complete
+  cycleflag  = CYCLE_COMPLETE = 1
 	
            speed = 2.0
   capture_radius = 2.0
@@ -81,4 +82,14 @@ Behavior=BHV_Pulse
   pulse_range = 20
   pulse_duration = 2
   pulse_color = red
+} 
+
+//-----------------------------------------------
+Behavior=BHV_ZigLeg
+{
+  name       = zigleg
+  pwt        = 200
+
+  zig_time   = 10
+  zig_offset = 45
 }

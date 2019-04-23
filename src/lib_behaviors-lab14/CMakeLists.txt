@@ -29,7 +29,6 @@ MACRO(ADD_BHV BHV_NAME)
     ${SYSTEM_LIBS} )
 ENDMACRO(ADD_BHV)
 
-
 #--------------------------------------------------------
 #                                      BHV_Pulse
 #--------------------------------------------------------
@@ -46,12 +45,13 @@ TARGET_LINK_LIBRARIES(BHV_Pulse
    geometry 
    ${SYSTEM_LIBS} )
 
+
 #--------------------------------------------------------
-#                                      BHV_SimpleWaypoint
+#                                      BHV_ZigLeg
 #--------------------------------------------------------
-ADD_LIBRARY(BHV_SimpleWaypoint SHARED 
-   BHV_SimpleWaypoint.cpp AOF_SimpleWaypoint.cpp)
-TARGET_LINK_LIBRARIES(BHV_SimpleWaypoint
+ADD_LIBRARY(BHV_ZigLeg SHARED 
+   BHV_ZigLeg.cpp)
+TARGET_LINK_LIBRARIES(BHV_ZigLeg
    helmivp
    behaviors 
    ivpbuild 

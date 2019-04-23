@@ -44,6 +44,7 @@ protected: // State variables
   double m_post_time;
   double m_range;
   double m_pulse_duration;
+  double m_cycle_complete;
   string m_pulse_color;
   bool m_debug;
 };

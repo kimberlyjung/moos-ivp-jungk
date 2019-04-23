@@ -37,13 +37,15 @@ BHV_Pulse::BHV_Pulse(IvPDomain domain) :
   m_post_time = 0;
   m_debug = true;
   m_range = 40;
-  m_pulse_duration=4;
+  m_pulse_duration= 4;
+  m_cycle_complete = 0;
   m_pulse_color="yellow";
 
 
   // Add any variables this behavior needs to subscribe for
   addInfoVars("NAV_X, NAV_Y");
   addInfoVars("WPT_INDEX","no_warning");
+  addInfoVars("CYCLE_COMPLETE", "no_warning");
 }
 
 //---------------------------------------------------------------
@@ -148,6 +150,7 @@ IvPFunction* BHV_Pulse::onRunState()
   if(!ok) postEMessage("NAV_Y not found.");
   if(ok) m_curr_time = getBufferCurrTime();
   if(!ok) postEMessage("curr buffer time not found");
+  //if(ok) m_cycle_complete = getBufferDoubleVal("CYCLE_COMPLETE", ok);
   /*if(ok) m_wpt_time_new = getBufferTimeVal("WPT_INDEX");
   if(m_debug) {
   	std::stringstream ss;
@@ -160,6 +163,11 @@ IvPFunction* BHV_Pulse::onRunState()
   if(ok) m_wpt_index_new = getBufferDoubleVal("WPT_INDEX", ok);
   //if(!ok) postEMessage("WPT_INDEX value not found.");
 
+  if(m_cycle_complete==1) {
+    m_wpt_index_old = 0;
+    m_wpt_index_new = 0;
+    m_cycle_complete = 0;
+  }
 
   if(m_wpt_index_new!=m_wpt_index_old) {
 	m_post_time = m_curr_time + 5; //post time is 5 seconds later
