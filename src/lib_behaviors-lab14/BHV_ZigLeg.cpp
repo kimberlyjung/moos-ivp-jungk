@@ -153,9 +153,12 @@ IvPFunction* BHV_ZigLeg::onRunState()
   if(ok) m_curr_time = getBufferCurrTime();
   if(!ok) postEMessage("curr buffer time not found");
   if(ok) m_wpt_index_new = getBufferDoubleVal("WPT_INDEX", ok);
-  if(ok) m_cycle_complete = getBufferDoubleVal("CYCLE_COMPLETE", ok);
+  if(ok && getBufferTimeVal("CYCLE_COMPLETE")==0) {
+  	m_cycle_complete = 1;
+  }
 
   if(m_cycle_complete==1) {
+  	postMessage("RESET", m_wpt_index_new);
   	m_wpt_index_old = 0;
   	m_wpt_index_new = 0;
   	m_cycle_complete = 0;
