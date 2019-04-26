@@ -1,8 +1,0 @@
-//------------------------------------------------------------
-// pMessageTimer.moos
-
-ProcessConfig = pMessageTimer
-{
-  AppTick    = 2
-  CommsTick  = 2
-}

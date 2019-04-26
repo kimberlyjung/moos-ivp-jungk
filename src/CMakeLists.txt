@@ -14,15 +14,8 @@ INCLUDE_DIRECTORIES(${LOCAL_LIBRARY_DIRS})
 #============================================================================
 # List the subdirectories to build...
 #============================================================================
-ADD_SUBDIRECTORY(lib_behaviors-lab14)
-#ADD_SUBDIRECTORY(pXRelayTest)
-#ADD_SUBDIRECTORY(pExampleApp)
-#ADD_SUBDIRECTORY(pOdometry) #KJ added for Lab 4
-#ADD_SUBDIRECTORY(pPrimeFactor) #KJ added for Lab 5
-#ADD_SUBDIRECTORY(pCommunicationAngle_jungk) #KJ added for Lab 6
-#ADD_SUBDIRECTORY(pGenPath) #KJ added 21 MARCH 2019
-#ADD_SUBDIRECTORY(pPointAssign) #KJ added 19 MARCH 2019
-#ADD_SUBDIRECTORY(pMessageTimer) #KJ added 31 MARCH 2019
+ADD_SUBDIRECTORY(lib_behaviors)
+#ADD_SUBDIRECTORY(pGenFreq)
 
 ##############################################################################
 #                           END of CMakeLists.txt
